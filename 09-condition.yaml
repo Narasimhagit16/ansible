@@ -1,0 +1,23 @@
+- name:
+  hosts: localhost
+  become: yes
+  tasks:
+  - name: check user exist or not
+    ansible.builtin.command: id roboshop
+    register: user
+    ignore_users: true
+
+  - name:
+    ansible.builtin.debug:
+      msg: "User output is {{user}}"
+  
+  - name:
+    ansible.builtin.debug:
+      msg: "User status {{user.rc}}"
+  - name:
+    ansible.builtin.user:
+      name: roboshop
+    when: user.rc != 0
+    
+
+    
