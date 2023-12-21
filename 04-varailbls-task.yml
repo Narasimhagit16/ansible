@@ -7,7 +7,7 @@
       Trainer: "Shiva"
       Duration: "100Hrs"
     ansible.builtin.debug:
-      msg: " Course is {{Course}, Trainer {{Trainer}}, Duration is {{Duration}}"
+      msg: " Course is {{Course}}, Trainer {{Trainer}}, Duration is {{Duration}}"
 
 
 
