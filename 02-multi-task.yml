@@ -1,12 +1,12 @@
 - name: Play-1
   hosts: localhost
-  - tasks: task-1 pay1
+  tasks: task-1 pay1
     - name: play1
       ansible.bultin.debug:
         msg: "Hello from task-1 from play-1"
 - name: Play-2
   hosts: localhost
-  - tasks: task 2 play 2
+  tasks: task 2 play 2
     - name: task 2
       ansible.builtin.debug:
         msg: "task 2 from paly 2"
