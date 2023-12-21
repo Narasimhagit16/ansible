@@ -1,0 +1,6 @@
+- name: Varaibles from args
+  hosts: localhost
+  tasks:
+  - name: pring variables from args
+    ansible.builtin.debug:
+      msg: " person is  {{PERSON}}, wishes is : {{WISHES}}"
