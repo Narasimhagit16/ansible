@@ -1,0 +1,28 @@
+- name: data types
+  hosts: localhost
+  vars:
+    NAME: Nari
+    SKILLS:
+    - Devops
+    - AWS
+    - python
+    EXPIRIENCE:
+      Java: 7
+      Cobol: 9
+      Jcl: 10
+    Trainer: true
+  tasks:
+  - name: print key value pair
+    ansible.builtin.debug:
+      msg: "kay values pair: name is {{NAME}}"
+  - name:
+    ansible.builtin.debug:
+      msg: :Skills {{SKILLS}}
+  - name:
+    ansible.builtin.debug:
+      msg: " Expirience {{EXPIRIENCE}} "
+
+  - name:
+    ansible.builtin.debug:
+      msg: " boolean {{Trainer}}"
+    
