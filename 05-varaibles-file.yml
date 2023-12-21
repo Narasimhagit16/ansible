@@ -5,4 +5,4 @@
   tasks:
   - name: print variables
     ansible.bultin.debug:
-      mag: " Course is {{Course}}, Trainer is {{Trainer}}, Duration {{Duration}}"
+      msg: " Course is {{Course}}, Trainer is {{Trainer}}, Duration {{Duration}}"
