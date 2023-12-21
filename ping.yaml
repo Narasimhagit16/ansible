@@ -1,5 +1,5 @@
 - name: ping playbook
-  hosts:
+  hosts: all
   tasks: ping module
   - name: ping module
     ansible:builtin:ping:
