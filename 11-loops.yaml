@@ -3,9 +3,9 @@
   tasks:
   - name:
     ansible.builtin.package:
-      name: "{{item}}""
+      name: "{{item}}"
       state: present
-    loop:
+    loop: 
     - git
     - postfix
     - mysql
