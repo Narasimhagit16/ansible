@@ -4,6 +4,7 @@
   - name: play1
     ansible.bultin.debug:
       msg: "Hello from task-1 from play-1"
+      
 - name: Play-2
   hosts: localhost
   tasks: task 2 play 2
