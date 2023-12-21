@@ -1,0 +1,8 @@
+- name: varaibles from file
+  hosts: localhost
+  vars_files:
+    - variables.yaml
+  tasks:
+  - name: print variables
+    ansible.bultin.debug:
+      mag: " Course is {{Course}}, Trainer is {{Trainer}}, Duration {{Duration}}"
