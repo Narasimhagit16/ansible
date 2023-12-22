@@ -1,0 +1,70 @@
+- name:
+  hosts: shipping
+  become: yes
+  tasks:
+  - name: install maven
+    dnf:
+      name: maven
+      state: present
+
+  - name:
+    user:
+      name: roboshop
+
+  - name:
+    file:
+      path: /app
+      state: directory
+
+  - name:
+    get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+      path: /tmp
+  
+  - name: 
+    unarchive:
+      src: /tmp/shipping.zip
+      dest: /app
+
+  - name: 
+    command: mvn clean package
+
+  - name:
+    command: mv target/shipping-1.0.jar shipping.jar
+
+  - name:
+    copy:
+      src: shipping.service
+      dest: /etc/systemd/system/shipping.service
+      remote_src: yes
+  
+  - name:
+    systemd_service:
+    daemon_reload: true
+
+  - name:
+    service:
+      name: shipping
+      state: started
+      enabled: yes
+
+  - name:
+    dnf:
+      name: mysql
+      state: present
+
+############need to uncommet this###########
+
+  # - name:
+  #   command: mysql -h mysql.nariops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+  
+  - name:
+    service:
+      name: shipping
+      state: restarted
+      
+
+
+
+
+
