@@ -35,6 +35,6 @@
   - name:
     service:
       name: redis
-      state: started
+      state: restarted
       enabled: yes
 
