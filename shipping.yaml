@@ -30,7 +30,7 @@
   - name: 
     command: mvn clean package
     args:
-    chdir: /app
+      chdir: /app
 
 
   - name:
