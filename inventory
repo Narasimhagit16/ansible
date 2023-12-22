@@ -12,3 +12,6 @@ redis.nariops.online
 
 [user]
 user.nariops.online
+
+[cart]
+cart.nariops.online

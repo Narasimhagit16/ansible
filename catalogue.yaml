@@ -54,6 +54,10 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
+  - name: deamon realod and start
+    systemd_service:
+      daemon_reload: true
+
   # - name: copy mongo repo file
   #   copy:
   #     src: mongo.repo

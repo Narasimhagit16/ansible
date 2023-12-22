@@ -1,51 +1,54 @@
-#ansible-playbook -i inventory  -e ansible_user=centos -e ansible_password=DevOps321 user.yaml
 
-- name: settring up user application
-  hosts: user
+- name:
+  hosts: cart
   become: yes
   tasks:
   - name:
     shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
-
+    
   - name:
     dnf:
       name: nodejs
       state: present
+  
   - name:
     user:
       name: roboshop
-
+  
   - name:
     file:
       path: /app
       state: directory
-  
-  - name:
-    get_url:
-      url: https://roboshop-builds.s3.amazonaws.com/user.zip
-      dest: /tmp
 
   - name:
+    get_url: 
+      url: https://roboshop-builds.s3.amazonaws.com/cart.zip
+      dest: /tmp
+  
+  - name:
     unarchive:
-      src: /tmp/user.zip
+      src: /tmp/cart.zip
       dest: /app
       remote_src: yes
 
-  - name:
+  - name: 
     community.general.npm:
       path: /app
 
   - name:
     copy:
-      src: user.service
-      dest: /etc/systemd/system/user.service
-
-  - name: deamon realod and start
-    systemd_service:
-      daemon_reload: true
+      src: cart.service
+      dest : /etc/systemd/system/cart.service
 
   - name:
+    systemd.service:
+      daemon_reload: true
+  
+  - name:
     service:
-      name: user
+      name: cart
       state: restarted
       enabled: yes
+
+    
+
