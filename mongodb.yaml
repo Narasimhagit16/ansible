@@ -1,5 +1,5 @@
 - name: Setup mongo DB
-  hosts: 172.31.90.120
+#  hosts: 172.31.90.120
   become: yes
   tasks:
   - name: copy repo file
@@ -20,7 +20,7 @@
   
   - name:
     replace:
-      path: /etc/ansible/sample.txt
+      path: /etc/mongod.conf
       regexp: "127.0.0.1"
       replace: "0.0.0.0"
 
