@@ -29,6 +29,9 @@
 
   - name: 
     command: mvn clean package
+    args:
+    chdir: /app
+
 
   - name:
     command: mv target/shipping-1.0.jar shipping.jar
