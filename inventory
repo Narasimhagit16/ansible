@@ -1,5 +1,5 @@
 [web]
-daws76s.online
+nariops.online
 
 [mongodb]
 mongodb.daws76s.online
@@ -15,3 +15,9 @@ user.nariops.online
 
 [cart]
 cart.nariops.online
+
+[mysql]
+mysql.nariops.online
+
+
+
