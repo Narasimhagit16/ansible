@@ -19,5 +19,6 @@ cart.nariops.online
 [mysql]
 mysql.nariops.online
 
-
+[shipping]
+172.31.87.65
 
