@@ -1,0 +1,29 @@
+- name: Setup mongo DB
+  hosts: mongo.nariops.online
+  tasks:
+  - name: copy repo file
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+  
+  - name: intsall mongo DB
+    ansible.builtin.package:
+      name: mongodb-org
+      state: present
+
+  - name: start and enable mongo DB
+    ansible.builtin.service:
+      name: mongod
+      state: started
+      enabled: yes
+  
+  - name:
+    replace:
+      path: /etc/ansible/sample.txt
+      regexp: "127.0.0.1"
+      replace: "0.0.0.0"
+
+  - name: Re-start mongo DB
+    service:
+      name: mongod
+      state: restarted

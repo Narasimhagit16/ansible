@@ -10,3 +10,5 @@
     - { name: 'git', status: 'present' }
     - { name: 'postfix', status: 'present'}
     - { name: 'nginx', status: absent}
+
+    # ansible-playbook -i inventory .ini -e ansible_use=centos - e ansible_passwor=DevOps321 
