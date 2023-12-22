@@ -1,3 +1,5 @@
+# ansible-playbook -i inventory  -e ansible_user=centos -e ansible_password=DevOps321 mysql.yaml
+
 - name:
   hosts: mysql
   become: yes
@@ -19,4 +21,4 @@
     command: mysql_secure_installation --set-root-pass RoboShop@1
 
   - name: 
-    commad: mysql -uroot -pRoboShop@1
+    command: mysql -uroot -pRoboShop@1
