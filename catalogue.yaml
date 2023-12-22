@@ -5,11 +5,11 @@
   hosts: 172.31.86.60
   become: yes
   tasks:
-  - name: disable existing node js vesion and enable node js version 18
-    shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
+  # - name: disable existing node js vesion and enable node js version 18
+  #   shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
 
-  # - name: 
-  #   command: dnf module disable nodejs -y
-  # - name: 
-  #   command: dnf module enable nodejs:18 -y
+  - name: 
+    command: dnf module disable nodejs -y
+  - name: 
+    command: dnf module enable nodejs:18 -y
 
