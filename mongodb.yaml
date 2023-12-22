@@ -3,17 +3,17 @@
   become: yes
   tasks:
   - name: copy repo file
-    ansible.builtin.copy:
+    copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
   
   - name: intsall mongo DB
-    ansible.builtin.package:
+    package:
       name: mongodb-org
       state: present
 
   - name: start and enable mongo DB
-    ansible.builtin.service:
+    service:
       name: mongod
       state: started
       enabled: yes
@@ -28,3 +28,4 @@
     service:
       name: mongod
       state: restarted
+#ansible-playbook -i 172.31.90.120, -e ansible_user=centos -e ansible_password=DevOps321 mongodb.yaml
