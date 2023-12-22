@@ -2,7 +2,7 @@
 
 
 - name: setting up catalogue server
-  hosts: 172.31.86.60
+  hosts: catalogue
   become: yes
   tasks:
   # - name: disable existing node js vesion and enable node js version 18
@@ -13,3 +13,68 @@
   - name: 
     command: dnf module enable nodejs:18 -y
 
+  - name:
+    dnf:
+      name: nodejs
+      state: present
+
+  - name:
+    user:
+      name: roboshop
+  
+  - name:
+    file:
+      path: /app
+      state: directory
+
+  - name:
+    get_url:
+      url: https://roboshop-builds.s3.amazonaws.com//catalogue.zip
+      dest: /tmp
+
+  - name:
+    unrachive:
+      src: /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes            # Unarchive a file that is already on the remote machine
+
+  - name: Install packages based on package.json.
+    community.general.npm:
+      path: /app
+
+#we can use the below task also
+
+  # - name: Install dependencies
+  #   ansible.builtin.command: npm install
+  #     args:
+  #       chdir: /app
+
+  - name: copy catalogue.service 
+    copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+
+  # - name: copy mongo repo file
+  #   copy:
+  #     src: mongo.repo
+  #     dest: /etc/yum.repos.d/mongo.repo
+
+  # - name: intsall mongo DB client
+  #   package:
+  #     name: mongodb-org-shell
+  #     state: present
+
+  # - name: get the categories count
+  #   ansible.builtin.command:  mongo --host mongodb.daws76s.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+  #   register: product_count
+
+  # - name: load scheema when there are no products
+  #   command: mongo --host mongo.nariops.online </app/schema/catalogue.js
+  #   when: product_count.stdout == 0
+
+  - name:
+    service:
+      name: catalogue
+      state: restarted
+      enabled: yes
+    

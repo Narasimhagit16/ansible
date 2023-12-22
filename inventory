@@ -1,5 +1,8 @@
 [web]
-3.89.45.195
+daws76s.online
 
-[localhost]
-54.86.0.195
+[mongodb]
+mongodb.daws76s.online
+
+[catalogue]
+catalogue.daws76s.online
