@@ -1,4 +1,4 @@
-
+#ansible-playbook -i inventory  -e ansible_user=centos -e ansible_password=DevOps321 cart.yaml
 - name:
   hosts: cart
   become: yes
@@ -41,7 +41,7 @@
       dest : /etc/systemd/system/cart.service
 
   - name:
-    systemd.service:
+    systemd_service:
       daemon_reload: true
   
   - name:
