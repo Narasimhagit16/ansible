@@ -33,7 +33,7 @@
 
   - name:
     community.general.npm:
-    path: /app
+      path: /app
 
   - name:
     copy:
