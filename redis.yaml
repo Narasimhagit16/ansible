@@ -1,0 +1,36 @@
+#ansible-playbook -i inventory redis -e ansible_user=centos -e ansible_password=DevOps321 redis.yaml
+
+- name:
+  hosts: redis.nariops.online
+  become: yes
+  tasks:
+- name: Install the redis rpm from a remote repo
+  dnf:
+    name: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
+    state: present
+
+# - name: Install Apache >= 2.4
+#   ansible.builtin.dnf:
+#     name: httpd >= 2.4
+#     state: present
+
+- name:
+  command: dnf module enable redis:remi-6.2 -y
+
+- name:
+  dnf:
+    name: redis
+    state: present
+
+- name:
+  replace:
+  path: /etc/redis.conf
+  regexp: "127.0.0.0"
+  replace: "0.0.0.0"
+
+- name:
+  service:
+  name: redis
+  state: started
+  enabled: yes
+

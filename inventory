@@ -6,3 +6,6 @@ mongodb.daws76s.online
 
 [catalogue]
 catalogue.nariops.online
+
+[redis]
+redis.nariops.online
