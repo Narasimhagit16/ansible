@@ -4,33 +4,33 @@
   hosts: redis
   become: yes
   tasks:
-- name: Install the redis rpm from a remote repo
-  dnf:
-    name: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
-    state: present
+  - name: Install the redis rpm from a remote repo
+    dnf:
+      name: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
+      state: present
 
 # - name: Install Apache >= 2.4
 #   ansible.builtin.dnf:
 #     name: httpd >= 2.4
 #     state: present
 
-- name:
-  command: dnf module enable redis:remi-6.2 -y
+  - name:
+    command: dnf module enable redis:remi-6.2 -y
 
-- name:
-  dnf:
-    name: redis
-    state: present
+  - name:
+    dnf:
+      name: redis
+      state: present
 
-- name:
-  replace:
-  path: /etc/redis.conf
-  regexp: "127.0.0.0"
-  replace: "0.0.0.0"
+  - name:
+    replace:
+      path: /etc/redis.conf
+      regexp: "127.0.0.0"
+      replace: "0.0.0.0"
 
-- name:
-  service:
-  name: redis
-  state: started
-  enabled: yes
+  - name:
+    service:
+      name: redis
+      state: started
+      enabled: yes
 
