@@ -9,3 +9,6 @@ catalogue.nariops.online
 
 [redis]
 redis.nariops.online
+
+[user]]
+user.nariops.online
