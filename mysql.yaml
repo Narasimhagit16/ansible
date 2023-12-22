@@ -9,7 +9,7 @@
   - name:
     dnf:
       name: mysql-community-server
-      state: pressent
+      state: present
   
   - name:
     service:
