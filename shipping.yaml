@@ -40,7 +40,7 @@
   
   - name:
     systemd_service:
-    daemon_reload: true
+      daemon_reload: true
 
   - name:
     service:
