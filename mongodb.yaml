@@ -1,5 +1,5 @@
 - name: Setup mongo DB
-  hosts: 
+  hosts: 172.31.90.120
   become: yes
   tasks:
   - name: copy repo file
