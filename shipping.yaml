@@ -34,7 +34,7 @@
 
 
   - name:
-    command: mv /target/shipping-1.0.jar shipping.jar
+    command: mv /app/target/shipping-1.0.jar shipping.jar
 
   - name:
     copy:
