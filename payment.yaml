@@ -34,6 +34,7 @@
       daemon_reload: true
   - name:
     service:
+      name: payment
       state: started
       enabled: yes
 
