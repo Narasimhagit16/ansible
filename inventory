@@ -2,7 +2,7 @@
 nariops.online
 
 [mongodb]
-mongodb.daws76s.online
+mongodb.nariops.online
 
 [catalogue]
 catalogue.nariops.online
@@ -22,3 +22,8 @@ mysql.nariops.online
 [shipping]
 shipping.nariops.online
 
+[rabbitmq]
+[rabbitmq.nariops.online]
+
+[payment]
+payment.nariops.online

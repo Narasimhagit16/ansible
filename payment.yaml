@@ -1,0 +1,39 @@
+# ansible-playbook -i inventory  -e ansible_user=centos -e ansible_password=DevOps321 payment.yaml
+- name:
+  hosts: payment
+  become: yes
+  tasks:
+  - name:
+    command: dnf install python36 gcc python3-devel -y
+  - name:
+    user:
+      name: roboshop
+  - name:
+    file:
+      path: /app
+      state: directory
+  - name:
+    get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/payment.zip
+      dest: /tmp
+  - name:
+    unarchive:
+      src: /tmp/payment.zip
+      dest: /app 
+      remote_src: yes
+  - name:
+    command: pip3.6 install -r requirements.txt
+    args:
+      chdir: /app
+  - name:
+    copy:
+      src: payment.service
+      dest: /etc/systemd/system/payment.service
+  - name:
+    systemd_service:
+      daemon_reload: true
+  - name:
+    service:
+    state: started
+    enabled: yes
+

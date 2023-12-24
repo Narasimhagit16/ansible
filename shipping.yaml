@@ -1,3 +1,4 @@
+# ansible-playbook -i inventory  -e ansible_user=centos -e ansible_password=DevOps321 shipping.yaml
 - name:
   hosts: shipping
   become: yes
@@ -31,8 +32,6 @@
     command: mvn clean package
     args:
       chdir: /app
-
-
   - name:
     command: mv /app/target/shipping-1.0.jar shipping.jar
 
