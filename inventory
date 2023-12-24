@@ -23,7 +23,7 @@ mysql.nariops.online
 shipping.nariops.online
 
 [rabbitmq]
-[rabbitmq.nariops.online]
+rabbitmq.nariops.online
 
 [payment]
 payment.nariops.online
