@@ -3,7 +3,8 @@
   become: yes
   tasks:
   - name:
-    dnf: nginx
+    dnf: 
+      name: nginx
       state: present
   - name: Remove file (delete file)
     file:
