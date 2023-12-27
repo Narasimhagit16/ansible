@@ -1,5 +1,5 @@
 #used below command to run the playbook   
-#ansible-playbook -i 172.31.90.120, -e ansible_user=centos -e ansible_password=DevOps321 mongodb.yaml
+# ansible-playbook -i inventory -e ansible_user=centos -e ansible_password=DevOps321 mongodb.yaml
 
 - name: Setup mongo DB
   hosts: mongodb
