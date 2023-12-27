@@ -53,7 +53,7 @@
     copy:
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
-      
+
 
   - name: deamon realod and start
     systemd_service:
@@ -70,11 +70,11 @@
       state: present
 
   - name: get the categories count
-    ansible.builtin.command:  mongo --host mongodb.daws76s.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    ansible.builtin.command:  mongo --host mongodb.nariops.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
 
   - name: load scheema when there are no products
-    command: mongo --host mongo.nariops.online </app/schema/catalogue.js
+    command: mongo --host mongodb.nariops.online </app/schema/catalogue.js
     when: product_count.stdout == "0"
 
   - name:
