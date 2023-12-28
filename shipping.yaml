@@ -61,7 +61,7 @@
 ############need to uncomment this###########
 
   - name: load shipping schema
-    shells: "mysql -h mysql.nariops.online -uroot -p{{pwd}} < /app/schema/shipping.sql"
+    shell: "mysql -h mysql.nariops.online -uroot -p{{pwd}} < /app/schema/shipping.sql"
   
   - name: restart shipping server
     service:
