@@ -36,6 +36,9 @@
       chdir: /app
   - name:
     command: mv /app/target/shipping-1.0.jar shipping.jar
+      args:
+    chdir: /app
+
 
   - name: cipying the shipping service file
     copy:
@@ -60,9 +63,19 @@
 
 ############need to uncomment this###########
 
+  - name: check cities schema exists or not
+    ansible.builtin.command:  mysql -h mysql.nariops.online -uroot -p{{pwd}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
+    register: schema
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "schema output: {{schema}}"
+
+  
   - name: load shipping schema
     shell: "mysql -h mysql.nariops.online -uroot -p{{pwd}} < /app/schema/shipping.sql"
-  
+    when: schema.stdout != "1"
+
   - name: restart shipping server
     service:
       name: shipping
