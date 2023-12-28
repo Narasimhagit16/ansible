@@ -9,9 +9,17 @@
 
   - name: Remove file (delete file)
     file:
+      path: /home/centos/app/file1.txt
+      state: absent
+
+  - name: Remove file (delete file)
+    file:
       path: /home/centos/app/*.txt
       state: absent
 
+    - name: Remove file (html file)
+      shell: rm -rf /home/centos/app/*.html
+      
 
   - name: setup erlang script
     shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
