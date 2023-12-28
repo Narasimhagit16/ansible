@@ -14,25 +14,25 @@
 #     name: httpd >= 2.4
 #     state: present
 
-  - name:
+  - name: install remi rereleasepo
     command: dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 
 
-  - name:
+  - name: install remi repo
     command: dnf module enable redis:remi-6.2 -y
 
-  - name:
+  - name: install redis
     dnf:
       name: redis
       state: present
 
-  - name:
+  - name: enable remote access
     replace:
       path: /etc/redis/redis.conf
       regexp: "127.0.0.1"
       replace: "0.0.0.0"
 
-  - name:
+  - name: restart redis
     service:
       name: redis
       state: restarted
