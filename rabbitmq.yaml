@@ -17,8 +17,8 @@
       path: /home/centos/app/*.txt
       state: absent
 
-    - name: Remove file (html file)
-      shell: rm -rf /home/centos/app/*.html
+  - name: Remove file (html file)
+    shell: rm -rf /home/centos/app/*.html
       
 
   - name: setup erlang script
