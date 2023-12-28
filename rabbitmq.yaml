@@ -27,6 +27,24 @@
   # - name: create rabbitmq user
   #   command: rabbitmqctl add_user roboshop roboshop123
 
+
+    - name:
+    #Add user to server and assign full access control on / vhost.
+    # user might have permission rules for other vhost but you don't care.
+    community.rabbitmq.rabbitmq_user:
+      user: roboshop
+      password: roboshop123
+      state: present
+      
+
   - name: giving permissions to user
     command: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+
+
+
+
+
+
+
+
 
