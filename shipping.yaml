@@ -37,7 +37,7 @@
 
   - name:
     command: mv /app/target/shipping-1.0.jar /app/shipping.jar
-      args:
+    
 
 
   - name: cipying the shipping service file
