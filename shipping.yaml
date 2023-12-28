@@ -34,10 +34,10 @@
     command: mvn clean package
     args:
       chdir: /app
+
   - name:
-    command: mv /app/target/shipping-1.0.jar shipping.jar
+    command: mv /app/target/shipping-1.0.jar /app/shipping.jar
       args:
-    chdir: /app
 
 
   - name: cipying the shipping service file
