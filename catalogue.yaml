@@ -8,9 +8,10 @@
   # - name: disable existing node js vesion and enable node js version 18
   #   shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
 
-  - name: disable existing node js and enabling jode js18
+  - name: disable existing node js
     command: dnf module disable nodejs -y
-  - name: 
+
+  - name:  enabling jode js18
     command: dnf module enable nodejs:18 -y
 
   - name: install node js
@@ -24,7 +25,7 @@
   
   - name: creating app directory
     file:
-      path: /app
+      path: app
       state: directory
 
   - name: download code from S3 url
@@ -78,7 +79,7 @@
       msg: "product_count:stdout: {{product_count.stdout}}"
 
   - name: load scheema when there are no products
-    command: mongo --host mongodb.nariops.online </app/schema/catalogue.js
+    command: mongo --host mongodb.nariops.online < /app/schema/catalogue.js
     when: product_count.stdout == "0"
 
   - name:
