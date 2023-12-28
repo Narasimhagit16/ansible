@@ -14,7 +14,7 @@
 
   - name: Remove file (delete file)
     file:
-      path: /home/centos/app/*.txt
+      path: /home/centos/app/*
       state: absent
 
   - name: Remove file (html file)
