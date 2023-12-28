@@ -8,60 +8,60 @@
       name: maven
       state: present
 
-  - name:
+  - name: create user roboshop
     user:
       name: roboshop
 
-  - name:
+  - name: create app directory
     file:
       path: /app
       state: directory
 
-  - name:
+  - name: download the code
     get_url:
       url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
       dest: /tmp
   
-  - name: 
+  - name: unzip the code
     unarchive:
       src: /tmp/shipping.zip
       dest: /app
       remote_src: yes
 
-  - name: 
+  - name:  build package
     command: mvn clean package
     args:
       chdir: /app
   - name:
     command: mv /app/target/shipping-1.0.jar shipping.jar
 
-  - name:
+  - name: cipying the shipping service file
     copy:
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
 
   
-  - name:
+  - name: daemon reload
     systemd_service:
       daemon_reload: true
 
-  - name:
+  - name: start shipping server
     service:
       name: shipping
       state: started
       enabled: yes
 
-  - name:
+  - name: install my sql client
     dnf:
       name: mysql
       state: present
 
-############need to uncommet this###########
+############need to uncomment this###########
 
-  # - name:
-  #   command: mysql -h mysql.nariops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+  - name: load shipping schema
+    command: mysql -h mysql.nariops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
   
-  - name:
+  - name: restart shipping server
     service:
       name: shipping
       state: restarted
