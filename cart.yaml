@@ -3,48 +3,48 @@
   hosts: cart
   become: yes
   tasks:
-  - name:
+  - name: disbale exising node js and enable js18 version
     shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
     
-  - name:
+  - name: install node js
     dnf:
       name: nodejs
       state: present
   
-  - name:
+  - name: create roboshop user
     user:
       name: roboshop
   
-  - name:
+  - name: create directory
     file:
-      path: /app
+      path: app
       state: directory
 
-  - name:
+  - name: dowload cart code
     get_url: 
       url: https://roboshop-builds.s3.amazonaws.com/cart.zip
       dest: /tmp
   
-  - name:
+  - name: unzip cart code
     unarchive:
       src: /tmp/cart.zip
       dest: /app
       remote_src: yes
 
-  - name: 
+  - name: install dependencied using npm
     community.general.npm:
       path: /app
 
-  - name:
+  - name: copy cart service
     copy:
       src: cart.service
       dest : /etc/systemd/system/cart.service
 
-  - name:
+  - name: daemon reload
     systemd_service:
       daemon_reload: true
   
-  - name:
+  - name: restart the service
     service:
       name: cart
       state: restarted
