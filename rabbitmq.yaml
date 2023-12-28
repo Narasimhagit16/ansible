@@ -7,6 +7,12 @@
   # - name:
   #   command: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
+  - name: Remove file (delete file)
+    file:
+      path: /app/*
+      state: absent
+
+
   - name: setup erlang script
     shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
@@ -28,7 +34,7 @@
   #   command: rabbitmqctl add_user roboshop roboshop123
 
 
-  - name:
+  - name: creating rabbitmq user
     community.rabbitmq.rabbitmq_user:
       user: roboshop
       password: roboshop123
