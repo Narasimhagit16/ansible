@@ -8,31 +8,31 @@
   # - name: disable existing node js vesion and enable node js version 18
   #   shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
 
-  - name: 
+  - name: disable existing node js and enabling jode js18
     command: dnf module disable nodejs -y
   - name: 
     command: dnf module enable nodejs:18 -y
 
-  - name:
+  - name: install node js
     dnf:
       name: nodejs
       state: present
 
-  - name:
+  - name: create user roboshop
     user:
       name: roboshop
   
-  - name:
+  - name: creating app directory
     file:
       path: /app
       state: directory
 
-  - name:
+  - name: download code from S3 url
     get_url:
       url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
       dest: /tmp
 
-  - name:
+  - name: unzipping the code
     unarchive:
       src: /tmp/catalogue.zip
       dest: /app
@@ -72,6 +72,10 @@
   - name: get the categories count
     ansible.builtin.command:  mongo --host mongodb.nariops.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
+
+  - name:
+    debug:
+      msg: "product_count:stdout: {{product_count.stdout}}"
 
   - name: load scheema when there are no products
     command: mongo --host mongodb.nariops.online </app/schema/catalogue.js
