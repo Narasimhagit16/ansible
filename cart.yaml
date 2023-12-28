@@ -17,7 +17,7 @@
   
   - name: create directory
     file:
-      path: app
+      path: /app
       state: directory
 
   - name: dowload cart code
