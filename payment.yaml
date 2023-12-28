@@ -3,36 +3,45 @@
   hosts: payment
   become: yes
   tasks:
-  - name:
+
+  - name: install python gcc and python-devel
     command: dnf install python36 gcc python3-devel -y
-  - name:
+
+  - name: create roboshop user
     user:
       name: roboshop
-  - name:
+
+  - name: create app directory
     file:
       path: /app
       state: directory
-  - name:
+
+  - name: download payment code
     get_url:
       url: https://roboshop-builds.s3.amazonaws.com/payment.zip
       dest: /tmp
-  - name:
+
+  - name: unzip payment code
     unarchive:
       src: /tmp/payment.zip
       dest: /app 
       remote_src: yes
-  - name:
+
+  - name: install dependencies
     command: pip3.6 install -r requirements.txt
     args:
       chdir: /app
-  - name:
+
+  - name: copy paymet service file
     copy:
       src: payment.service
       dest: /etc/systemd/system/payment.service
-  - name:
+
+  - name: daemon reload
     systemd_service:
       daemon_reload: true
-  - name:
+
+  - name: start payment service
     service:
       name: payment
       state: started
