@@ -7,44 +7,44 @@
   - name:
     shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
 
-  - name:
+  - name: install node js
     dnf:
       name: nodejs
       state: present
-  - name:
+  - name: create user
     user:
       name: roboshop
 
-  - name:
+  - name: create app directory
     file:
       path: /app
       state: directory
   
-  - name:
+  - name: dowload user appliaction code
     get_url:
       url: https://roboshop-builds.s3.amazonaws.com/user.zip
       dest: /tmp
 
-  - name:
+  - name: Unzip the code
     unarchive:
       src: /tmp/user.zip
       dest: /app
       remote_src: yes
 
-  - name:
+  - name: resolve the dependencies
     community.general.npm:
       path: /app
 
-  - name:
+  - name: copy user service file
     copy:
       src: user.service
       dest: /etc/systemd/system/user.service
 
   - name: deamon realod and start
-    systemd_service:
+    systemd_service: 
       daemon_reload: true
 
-  - name:
+  - name: restart the user service
     service:
       name: user
       state: restarted
