@@ -9,7 +9,7 @@
 
   - name: Remove file (delete file)
     file:
-      path: /home/centos/app/*
+      path: /home/centos/app/*.txt
       state: absent
 
 
