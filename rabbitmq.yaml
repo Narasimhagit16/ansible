@@ -24,9 +24,9 @@
       state: started
       enabled: yes
 
-  - name: create rabbitmq user
-    command: rabbitmqctl add_user roboshop roboshop123
-    
+  # - name: create rabbitmq user
+  #   command: rabbitmqctl add_user roboshop roboshop123
+
   - name: giving permissions to user
     command: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 
